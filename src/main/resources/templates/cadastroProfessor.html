@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Professor</title>
+</head>
+<body>
+    <div th:each="professor : ${professores}">
+        <div>Nome do Professor:
+            <span th:text="${professor.nome}"></span>
+        </div>
+        <div>E-mail do Professor:
+            <span th:text="${professor.email}"></span>
+        </div>
+        <div>Disciplina do Professor:
+            <span th:text="${professor.disciplina}"></span>
+        </div>
+    </div>
+
+
+</body>
+</html>

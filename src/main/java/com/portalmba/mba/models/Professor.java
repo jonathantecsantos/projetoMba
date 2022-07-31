@@ -1,7 +1,12 @@
 package com.portalmba.mba.models;
 
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Professor {
 
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private int id;
     private String nome;
     private String email;
     private String disciplina;
@@ -12,7 +17,16 @@ public class Professor {
         this.email = email;
         this.disciplina = disciplina;
         this.status = true;
+        this.id = count.incrementAndGet();
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

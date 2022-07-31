@@ -11,15 +11,26 @@ import java.util.List;
 @Controller
 public class ProfessorController {
 
-    @GetMapping("/cadastrarProfessor")
-    public String cadastroProfessor(Model model){
+    @GetMapping("/listarProfessores")
+    public String listaProfessores(Model model){
         String nome = "Jonathan";
         String email = "jonathan.tecsantos@gmail.com";
         String disciplina = "Computação em Nuvem";
         Professor professor = new Professor(nome, email, disciplina);
 
-        List<Professor> professores = Arrays.asList(professor, professor, professor);
+        String nome2 = "John";
+        String email2 = "John@gmail.com";
+        String disciplina2 = "Arte da traquinagem";
+        Professor professor2 = new Professor(nome2, email2, disciplina2);
+
+        List<Professor> professores = Arrays.asList(professor, professor2);
         model.addAttribute("professores", professores);
+        return "listaProfessores";
+    }
+
+    @GetMapping("/cadastrarProfessor")
+    public String cadastroProfessor(Model model){
         return "cadastroProfessor";
+
     }
 }

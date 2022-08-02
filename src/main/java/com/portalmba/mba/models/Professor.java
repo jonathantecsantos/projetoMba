@@ -1,12 +1,16 @@
 package com.portalmba.mba.models;
 
 
-import java.util.concurrent.atomic.AtomicInteger;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Professor {
 
-    private static final AtomicInteger count = new AtomicInteger(0);
-    private int id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String email;
     private String disciplina;
@@ -17,15 +21,17 @@ public class Professor {
         this.email = email;
         this.disciplina = disciplina;
         this.status = true;
-        this.id = count.incrementAndGet();
-
     }
 
-    public int getId() {
+    public Professor() {
+        this.status = true;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

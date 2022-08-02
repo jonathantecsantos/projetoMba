@@ -1,36 +1,47 @@
 package com.portalmba.mba.controllers;
 
+import com.portalmba.mba.dtos.ProfessorDto;
 import com.portalmba.mba.models.Professor;
+import com.portalmba.mba.repositories.ProfessorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
+
 import java.util.List;
 
 @Controller
+@RequestMapping("professor")
 public class ProfessorController {
 
-    @GetMapping("/listarProfessores")
-    public String listaProfessores(Model model){
-        String nome = "Jonathan";
-        String email = "jonathan.tecsantos@gmail.com";
-        String disciplina = "Computação em Nuvem";
-        Professor professor = new Professor(nome, email, disciplina);
+    @Autowired
+    private ProfessorRepository professorRepository;
 
-        String nome2 = "John";
-        String email2 = "John@gmail.com";
-        String disciplina2 = "Arte da traquinagem";
-        Professor professor2 = new Professor(nome2, email2, disciplina2);
+    @GetMapping("/listar")
+    public ModelAndView listaProfessores(){
+        //List<Professor> professores = Arrays.asList(professor, professor2);
 
-        List<Professor> professores = Arrays.asList(professor, professor2);
-        model.addAttribute("professores", professores);
-        return "listaProfessores";
+        List<Professor> professores = professorRepository.findAll();
+        ModelAndView mv = new ModelAndView("professor/listaProfessores");
+        mv.addObject("professores", professores);
+        return mv;
     }
 
-    @GetMapping("/cadastrarProfessor")
-    public String cadastroProfessor(Model model){
-        return "cadastroProfessor";
-
+    @GetMapping("/cadastrar")
+    public String formularioDeCadastro(){
+        return "professor/formularioDeCadastroProfessor";
     }
+
+    @PostMapping("/novo")
+    public String cadastroProfessor(ProfessorDto professorDto){
+
+        Professor professor = professorDto.toProfessor();
+        professorRepository.save(professor);
+        return "professor/formularioDeCadastroProfessor";
+    }
+
+
 }

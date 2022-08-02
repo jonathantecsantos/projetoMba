@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}">
+<body>
+    <div th:replace="~{base :: menu}"></div>
+        <form action="/anoLetivo/novo" method="post">
+            <strong>Cadastro de Ano Letivo</strong>
+            <div class="mb-3">
+                <label for="ano">Ano Letivo: </label>
+                <input name="ano" class="form-control form-control-sm">
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+
+</body>
+</html>

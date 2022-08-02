@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}">
+<body>
+    <div th:replace="~{base :: menu}"></div>
+    <form action="/professor/novo" method="post">
+        <strong>Cadastro de Professor</strong>
+
+            <div class="mb-3">
+                <label for="nomeProfessor">Nome do Professor: </label>
+                <input name="nomeProfessor" class="form-control form-control-sm">
+            </div>
+            <div class="mb-3">
+                <label for="emailProfessor" class="form-label">E-mail do professor:</label>
+                <input name="emailProfessor" type="email" class="form-control form-control-sm" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="disciplinaProfessor">Disciplina do Professor: </label>
+                <input name="disciplinaProfessor" class="form-control form-control-sm">
+            </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</body>
+</html>
